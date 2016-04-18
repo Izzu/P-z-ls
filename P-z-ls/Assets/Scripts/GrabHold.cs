@@ -49,12 +49,15 @@ public class GrabHold : MonoBehaviour {
 	void Update () {
         if(Input.GetMouseButtonDown(1))
         {
+            Debug.Log(grabbedObject);
             if(grabbedObject == null)
             {
+                Debug.Log("try");
                 TryGrabObject(GetMouseHoverObject(range));
             }
             else
             {
+                Debug.Log("drop");
                 DropObject();
             }
         }
