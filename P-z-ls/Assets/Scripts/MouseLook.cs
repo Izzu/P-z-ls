@@ -46,6 +46,9 @@ public class MouseLook : MonoBehaviour {
     }
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         rigid = GetComponent<Rigidbody>();
 
         // Make the rigid body not change rotation

@@ -2,70 +2,58 @@
 using System.Collections;
 
 public class GrabHold : MonoBehaviour {
-    GameObject grabbedObject;
-    float grabbedObjectSize;
-    public float range;
 
-    GameObject GetMouseHoverObject(float range)
+    private GameObject anObject;
+    int canGrab;
+    public float range = 100f;
+    Ray shootRay;
+    RaycastHit hitSomething;
+    //Rigidbody rigid;
+
+    void Start()
     {
-        Vector3 position = gameObject.transform.position;
-        RaycastHit raycastHit;
-        Vector3 target = position + Camera.main.transform.forward;
-
-        if(Physics.Linecast(position, target, out raycastHit))
-        {
-            return raycastHit.collider.gameObject;
-        }
-
-        return null;
-    }
-	
-    void TryGrabObject(GameObject grabObject)
-    {
-        if (grabObject == null || !CanGrab(grabObject))
-            return;
-
-        grabbedObject = grabObject;
-        grabbedObjectSize = grabbedObject.GetComponent<Renderer>().bounds.size.magnitude;
-    }
-
-    bool CanGrab(GameObject anObject)
-    {
-        return anObject.GetComponent<Rigidbody>() != null;
-    }
-
-    void DropObject()
-    {
-        if (grabbedObject == null)
-            return;
-
-        if (grabbedObject.GetComponent<Rigidbody>() != null)
-            grabbedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-        grabbedObject = null;
+        canGrab = LayerMask.GetMask("moveable");
     }
 
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(grabbedObject);
-            if(grabbedObject == null)
+            Debug.Log("shoot");
+
+            shootRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            if (Physics.Raycast(shootRay, out hitSomething, range))
             {
-                Debug.Log("try");
-                TryGrabObject(GetMouseHoverObject(range));
+                anObject = hitSomething.collider.gameObject;
+                Vector3 objectPos = anObject.transform.position;
+                Debug.Log("hit something");
+
+                if (hitSomething.collider.tag == "moveable")
+                {
+                    Debug.Log("hit something moveable");
+
+                    if (anObject.GetComponents<Rigidbody>() != null)
+                        anObject.GetComponent<Rigidbody>().isKinematic = true;
+
+                    anObject.transform.parent = Camera.main.transform;
+                }
             }
             else
-            {
-                Debug.Log("drop");
-                DropObject();
-            }
+                Debug.Log("nothing hit");
         }
-
-        if(grabbedObject != null)
+        else if (Input.GetMouseButtonUp(0))
         {
-            Vector3 newPosition = gameObject.transform.position + Camera.main.transform.forward * grabbedObjectSize;
-            grabbedObject.transform.position = newPosition;
+            Debug.Log("drop it");
+            anObject.GetComponent<Rigidbody>().isKinematic = false;
+            anObject.transform.parent = null;
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+            UnityEditor.EditorApplication.isPlaying = false;
         }
 	}
 }
