@@ -9,6 +9,8 @@ public class GrabHold : MonoBehaviour {
     Ray shootRay;
     RaycastHit hitSomething;
     //Rigidbody rigid;
+    LineRenderer line;
+    Color startColor;
 
     void Start()
     {
@@ -25,28 +27,42 @@ public class GrabHold : MonoBehaviour {
             shootRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            line.enabled = true;
+            line.SetPosition(0, transform.position);
+
             if (Physics.Raycast(shootRay, out hitSomething, range))
             {
                 anObject = hitSomething.collider.gameObject;
                 Vector3 objectPos = anObject.transform.position;
-                Debug.Log("hit something");
+                anObject = hitSomething.collider.gameObject;
+
+                startColor = anObject.GetComponent<Renderer>().material.color;
 
                 if (hitSomething.collider.tag == "moveable")
                 {
-                    Debug.Log("hit something moveable");
-
                     if (anObject.GetComponents<Rigidbody>() != null)
                         anObject.GetComponent<Rigidbody>().isKinematic = true;
 
                     anObject.transform.parent = Camera.main.transform;
+
+                    //set ray color & object color
+                    line.SetColors(Color.blue, Color.blue);
+                    line.material.color = Color.blue;
+                    line.SetPosition(1, hitSomething.point);
+                    anObject.GetComponent<Renderer>().material.color = Color.blue;
+                }
+                else
+                {
+                    //set ray color & object color
+                    line.SetColors(Color.red, Color.red);
+                    line.material.color = Color.red;
+                    anObject.GetComponent<Renderer>().material.color = Color.blue;
                 }
             }
-            else
-                Debug.Log("nothing hit");
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("drop it");
+            anObject.GetComponent<Renderer>().material.color = startColor;
             anObject.GetComponent<Rigidbody>().isKinematic = false;
             anObject.transform.parent = null;
         }
