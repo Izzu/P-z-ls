@@ -16,10 +16,10 @@ public class Character : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //float rotate = Input.GetAxis("Horizontal");
+        float rotate = Input.GetAxis("Horizontal");
         float move = Input.GetAxisRaw("Vertical");
         Move(move);
-        //Turning(rotate);
+        Turning(rotate);
     }
 
     void Move(float move)
@@ -30,12 +30,12 @@ public class Character : MonoBehaviour {
         playerRigidbody.MovePosition(playerRigidbody.position + movement);
     }
 
-    /*void Turning(float rotate)
+    void Turning(float rotate)
     {
         rotation.Set(0f, rotate, 0f);
         rotation = rotation.normalized * rotateSpeed;
         Quaternion rotated = Quaternion.Euler(rotation);
         playerRigidbody.MoveRotation(playerRigidbody.rotation * rotated);
 
-    }*/
+    }
 }
