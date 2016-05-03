@@ -21,5 +21,7 @@ public class Event1 : MonoBehaviour {
         {
             particles.SetActive(true);
         }
+
+
     }
 }
