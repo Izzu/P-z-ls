@@ -9,7 +9,7 @@ public class GrabHold : MonoBehaviour {
     Ray shootRay;
     RaycastHit hitSomething;
     //Rigidbody rigid;
-    public LineRenderer line;
+    //public LineRenderer line;
     Color startColor;
     Ray ray;
 
@@ -17,7 +17,7 @@ public class GrabHold : MonoBehaviour {
     {
         canGrab = LayerMask.GetMask("moveable");
         //line = GetComponent<LineRenderer>();
-        line.enabled = false;
+        //line.enabled = false;
     }
 
 	// Update is called once per frame
@@ -29,8 +29,8 @@ public class GrabHold : MonoBehaviour {
 
             shootRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            line.enabled = true;
-            line.SetPosition(0, transform.position);
+            //line.enabled = true;
+            //line.SetPosition(0, transform.position);
             
             if (Physics.Raycast(shootRay, out hitSomething, range))
             {
@@ -48,16 +48,16 @@ public class GrabHold : MonoBehaviour {
                     anObject.transform.parent = Camera.main.transform;
 
                     //set ray color & object color
-                    line.SetColors(Color.blue, Color.blue);
-                    line.material.color = Color.blue;
-                    line.SetPosition(1, hitSomething.point);
+                    //line.SetColors(Color.blue, Color.blue);
+                    //line.material.color = Color.blue;
+                    //line.SetPosition(1, hitSomething.point);
                     anObject.GetComponent<Renderer>().material.color = Color.blue;
                 }
                 else
                 {
                     //set ray color & object color
-                    line.SetColors(Color.red, Color.red);
-                    line.material.color = Color.red;
+                    //line.SetColors(Color.red, Color.red);
+                    //line.material.color = Color.red;
                 }
             }
         }

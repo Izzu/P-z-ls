@@ -10,7 +10,7 @@ labels:
 - material
 - procedural
 - substance
-timeCreated: 1461766085
+timeCreated: 1462293155
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -20,7 +20,7 @@ SubstanceImporter:
     prototypeName: Wood_Planks
     shaderName: 
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
+    shaderKeywords: 
     renderQueue: -1
     lightmapFlags: 5
     inputs:
@@ -38,40 +38,26 @@ SubstanceImporter:
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
-    - name: XY_Tiling
+    - name: Edge_Roughness
       value:
-        scalar[0]: 1
-        scalar[1]: 5.02
-        scalar[2]: 0
-        scalar[3]: 0
-        texture: {instanceID: 0}
-    - name: Offset
-      value:
-        scalar[0]: 5.57
+        scalar[0]: 0
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
     - name: Warp_Intensity
       value:
-        scalar[0]: 6.54
+        scalar[0]: 3
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
-    - name: Variation
+    - name: Offset
       value:
-        scalar[0]: 1
-        scalar[1]: 1
+        scalar[0]: 0
+        scalar[1]: 0
         scalar[2]: 0
-        scalar[3]: 0.696
-        texture: {instanceID: 0}
-    - name: Height_Variation
-      value:
-        scalar[0]: 1
-        scalar[1]: 1
-        scalar[2]: 0
-        scalar[3]: 0.6
+        scalar[3]: 0
         texture: {instanceID: 0}
     - name: Screws
       value:
@@ -80,12 +66,12 @@ SubstanceImporter:
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
-    - name: Edge_Roughness
+    - name: Wood_Colour
       value:
-        scalar[0]: 0.589
-        scalar[1]: 0
-        scalar[2]: 0
-        scalar[3]: 0
+        scalar[0]: 0.556863
+        scalar[1]: 0.504753
+        scalar[2]: 0.393072
+        scalar[3]: 1
         texture: {instanceID: 0}
     - name: Wood_Age
       value:
@@ -94,23 +80,9 @@ SubstanceImporter:
         scalar[2]: 0
         scalar[3]: 0
         texture: {instanceID: 0}
-    - name: Color
-      value:
-        scalar[0]: 0.517647
-        scalar[1]: 0.434546
-        scalar[2]: 0.33901
-        scalar[3]: 1
-        texture: {instanceID: 0}
-    - name: Wood_Colour
-      value:
-        scalar[0]: 0.5568628
-        scalar[1]: 0.5058824
-        scalar[2]: 0.39607844
-        scalar[3]: 1
-        texture: {instanceID: 0}
     - name: Wood_Dirt
       value:
-        scalar[0]: 0.538
+        scalar[0]: 0
         scalar[1]: 0
         scalar[2]: 0
         scalar[3]: 0
@@ -118,7 +90,7 @@ SubstanceImporter:
     materialInformation:
       serializedVersion: 5
       offset: {x: 0, y: 0}
-      scale: {x: 5, y: 2}
+      scale: {x: 1, y: 1}
       generateMipmaps: 1
       generateAllOutputs: 0
       animationUpdateRate: 42
@@ -130,14 +102,14 @@ SubstanceImporter:
             name: _MainTex
           second:
             texture: {instanceID: 0}
-            scale: {x: 5, y: 2}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
             name: _BumpMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 2}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -151,7 +123,7 @@ SubstanceImporter:
             name: _ParallaxMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 2}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -165,7 +137,7 @@ SubstanceImporter:
             name: _EmissionMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 5, y: 2}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
         data:
           first:
@@ -186,7 +158,7 @@ SubstanceImporter:
             name: _MetallicGlossMap
           second:
             texture: {instanceID: 0}
-            scale: {x: 1, y: 2}
+            scale: {x: 1, y: 1}
             offset: {x: 0, y: 0}
       floats:
         data:
@@ -204,7 +176,7 @@ SubstanceImporter:
         data:
           first:
             name: _Parallax
-          second: 0.0222
+          second: 0.02
         data:
           first:
             name: _ZWrite

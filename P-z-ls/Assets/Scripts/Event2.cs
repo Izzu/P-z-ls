@@ -13,10 +13,10 @@ public class Event2 : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other)
     {
-        if(other.rigidbody.mass == weight)
-        {
+        //if(other.rigidbody.mass == weight)
+        //{
             gameObject.transform.position = gameObject.transform.position - new Vector3(0f, 0.01f, 0f);
             particles.SetActive(true);
-        }
+        //}
     }
 }
