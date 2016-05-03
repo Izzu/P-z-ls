@@ -9,12 +9,15 @@ public class GrabHold : MonoBehaviour {
     Ray shootRay;
     RaycastHit hitSomething;
     //Rigidbody rigid;
-    LineRenderer line;
+    public LineRenderer line;
     Color startColor;
+    Ray ray;
 
     void Start()
     {
         canGrab = LayerMask.GetMask("moveable");
+        //line = GetComponent<LineRenderer>();
+        line.enabled = false;
     }
 
 	// Update is called once per frame
@@ -26,20 +29,19 @@ public class GrabHold : MonoBehaviour {
 
             shootRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             line.enabled = true;
             line.SetPosition(0, transform.position);
-
+            
             if (Physics.Raycast(shootRay, out hitSomething, range))
             {
                 anObject = hitSomething.collider.gameObject;
                 Vector3 objectPos = anObject.transform.position;
                 anObject = hitSomething.collider.gameObject;
 
-                startColor = anObject.GetComponent<Renderer>().material.color;
-
                 if (hitSomething.collider.tag == "moveable")
                 {
+                    startColor = anObject.GetComponent<Renderer>().material.color;
+
                     if (anObject.GetComponents<Rigidbody>() != null)
                         anObject.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -56,20 +58,22 @@ public class GrabHold : MonoBehaviour {
                     //set ray color & object color
                     line.SetColors(Color.red, Color.red);
                     line.material.color = Color.red;
-                    anObject.GetComponent<Renderer>().material.color = Color.blue;
                 }
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            anObject.GetComponent<Renderer>().material.color = startColor;
-            anObject.GetComponent<Rigidbody>().isKinematic = false;
-            anObject.transform.parent = null;
+            if (anObject != null && anObject.GetComponent<Collider>().tag == "moveable")
+            {
+                anObject.GetComponent<Renderer>().material.color = startColor;
+                anObject.GetComponent<Rigidbody>().isKinematic = false;
+                anObject.transform.parent = null;
+            }
         }
-        else if(Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
             UnityEditor.EditorApplication.isPlaying = false;
-        }
+        }        
 	}
 }
