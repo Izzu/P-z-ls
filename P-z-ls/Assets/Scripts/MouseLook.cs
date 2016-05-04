@@ -44,6 +44,7 @@ public class MouseLook : MonoBehaviour {
             transform.localRotation = originalRotation * yQuaternion;
         }
     }
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
