@@ -184,6 +184,7 @@ namespace Leap.Unity.PinchUtility {
       }
 
       if (_isPinching) {
+
         _pinchPos = transform.position;
         _pinchRotation = transform.rotation;
       }

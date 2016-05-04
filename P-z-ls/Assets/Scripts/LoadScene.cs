@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour {
 
@@ -28,7 +28,8 @@ public class LoadScene : MonoBehaviour {
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(level); //load the scene chosen
+        //SceneManager.LoadScene(level); //load the scene chosen
+        Application.LoadLevel(level);
     }
 
     void OnCollisionExit(Collision other)

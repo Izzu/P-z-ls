@@ -67,11 +67,21 @@ namespace Leap.Unity.PinchUtility {
 
       if (_pinchDetectorA.IsPinching && _pinchDetectorB.IsPinching) {
         transformDoubleAnchor();
+        gameObject.GetComponent<Rigidbody>().useGravity = false;  
       } else if (_pinchDetectorA.IsPinching) {
         transformSingleAnchor(_pinchDetectorA);
-      } else if (_pinchDetectorB.IsPinching) {
-        transformSingleAnchor(_pinchDetectorB);
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
       }
+      else if (_pinchDetectorB.IsPinching)
+      {
+          transformSingleAnchor(_pinchDetectorB);
+          gameObject.GetComponent<Rigidbody>().useGravity = false;
+      }
+      else
+      {
+          gameObject.GetComponent<Rigidbody>().useGravity = true;
+      }
+
 
       if (didUpdate) {
         transform.SetParent(_anchor, true);
