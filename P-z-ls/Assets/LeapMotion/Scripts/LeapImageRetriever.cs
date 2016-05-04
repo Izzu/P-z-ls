@@ -47,6 +47,11 @@ namespace Leap.Unity{
         return _eyeTextureData;
       }
     }
+
+      public void OnAwake()
+      {
+          DontDestroyOnLoad(transform.gameObject);
+      }
   
     public class LeapTextureData {
       private Texture2D _combinedTexture = null;
@@ -348,15 +353,20 @@ namespace Leap.Unity{
     }
   
     public void ApplyCameraProjectionValues() {
-      Camera c = GetComponent<Camera>();
-      //These parameters are used during undistortion of the images to ensure they
-      //line up properly with the scene
-      Vector4 projection = new Vector4();
-      projection.x = c.projectionMatrix[0, 2];
-      projection.y = 0f;
-      projection.z = c.projectionMatrix[0, 0];
-      projection.w = c.projectionMatrix[1, 1];
-      Shader.SetGlobalVector(GLOBAL_CAMERA_PROJECTION_NAME, projection);
+            Camera c = GetComponent<Camera>();
+            //These parameters are used during undistortion of the images to ensure they
+            //line up properly with the scene
+            Vector4 projection = new Vector4();
+            projection.x = c.projectionMatrix[0, 2];
+            projection.y = 0f;
+            projection.z = c.projectionMatrix[0, 0];
+            projection.w = c.projectionMatrix[1, 1];
+            Shader.SetGlobalVector(GLOBAL_CAMERA_PROJECTION_NAME, projection);
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(GetComponent<Camera>());
     }
   
     void onDistortionChange(object sender, LeapEventArgs args) {

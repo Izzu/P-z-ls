@@ -22,16 +22,18 @@ public class Button1 : MonoBehaviour {
     //on collision do this
 	void OnCollisionEnter(Collision other)
     {
-        gameObject.transform.position = Vector3.Lerp(start, end, Time.time);
-        button.transform.position = Vector3.Lerp(start, end, Time.time);
+        float speed = Time.deltaTime * 10;
+        gameObject.transform.position = Vector3.Lerp(start, end, speed);
+        button.transform.position = Vector3.Lerp(start, end, speed);
         //button.transform.position = button.transform.position - new Vector3(0f, 5f, 0f);
         particles.SetActive(true); //start the particle effects
     }
 
     void OnCollisionExit(Collision other)
     {
-        gameObject.transform.position = Vector3.Lerp(end, start, Time.deltaTime);
-        button.transform.position = Vector3.Lerp(end, start, Time.deltaTime);
+        float speed = Time.deltaTime * 10;
+        gameObject.transform.position = Vector3.Lerp(end, start, speed);
+        button.transform.position = Vector3.Lerp(end, start, speed);
         particles.SetActive(false);
     }
 }

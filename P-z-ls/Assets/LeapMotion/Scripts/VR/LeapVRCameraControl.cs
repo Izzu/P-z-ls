@@ -41,6 +41,11 @@ namespace Leap.Unity{
   
     private Matrix4x4 _finalCenterMatrix;
     private LeapDeviceInfo _deviceInfo;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(GetComponent<Camera>());
+    }
   
     void Start() {
   #if UNITY_EDITOR

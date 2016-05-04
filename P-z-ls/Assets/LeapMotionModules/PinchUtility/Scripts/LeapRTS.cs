@@ -40,10 +40,13 @@ namespace Leap.Unity.PinchUtility {
 
     private float _defaultNearClip;
 
+    private bool isMoveable;
+
     void Awake() {
       if (_pinchDetectorA == null || _pinchDetectorB == null) {
         Debug.LogWarning("Both Pinch Detectors of the LeapRTS component must be assigned. This component has been disabled.");
         enabled = false;
+        isMoveable = false;
       }
 
       GameObject pinchControl = new GameObject("RTS Anchor");
@@ -84,7 +87,7 @@ namespace Leap.Unity.PinchUtility {
 
 
       if (didUpdate) {
-        transform.SetParent(_anchor, true);
+              transform.SetParent(_anchor, true);
       }
     }
 
